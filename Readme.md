@@ -22,6 +22,11 @@ The application should have the following functionalities:
 - User can bookmark a character and save it in [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
 - A screen showing the bookmarked characters with ability to remove the character from bookmarks.
 
+## Bonus
+
+- Add infinite scroll to the list of characters.
+  > Pagination functionality and documentation is available in API.
+
 ## Submission
 
 1. Fork this repository to your account.
