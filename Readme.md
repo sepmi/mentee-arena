@@ -20,6 +20,7 @@ The application should have the following functionalities:
 - A screen showing list of all characters with their informations available in the [RickAndMortyAPI](https://rickandmortyapi.com/).
 - User can search in character names using `API`.
 - User can bookmark a character and save it in [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
+- A screen showing the bookmarked characters with ability to remove the character from bookmarks.
 
 ## Submission
 
