@@ -1,6 +1,14 @@
 import classes from "./Character.module.css";
 
 const Character = (props) => {
+  const bookmarkHandler = () => {
+    props.onAddBookmark({ mode: "add", data: props.data });
+  };
+
+  const deleteBookMarkHandler = () => {
+    props.onAddBookmark({ mode: "delete", data: props.data });
+  };
+
   return (
     <div className={classes.main}>
       {/* detail section */}
@@ -15,6 +23,15 @@ const Character = (props) => {
 
       {/* image section */}
       <img className={classes.image} src={props.data.image} />
+
+      {/* bookmark button */}
+      <div className={classes.bookmark}>
+        {!props.showBookmarkMode && (
+          <button onClick={bookmarkHandler}>add to bookmark</button>
+        )}
+
+        {<button onClick={deleteBookMarkHandler}>delete bookmark</button>}
+      </div>
     </div>
   );
 };

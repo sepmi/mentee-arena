@@ -1,24 +1,18 @@
 import { useEffect, useState } from "react";
 import Character from "./Character";
-import classes from "./Characters.module.css";
+import classes from "./ShowBookMark.module.css";
 import { clear, parsed, save } from "../functions/functions";
 
-const Characters = (props) => {
-  const [characters, setCharacters] = useState();
+const ShowBookMark = (props) => {
+  const [chLists, setChLists] = useState();
 
   useEffect(() => {
-    const fetchChracters = async () => {
-      const response = await fetch("https://rickandmortyapi.com/api/character");
-      const data = await response.json();
-
-      setCharacters(data.results);
-    };
-
-    fetchChracters();
+    const oldList = parsed("charactersList");
+    setChLists(oldList);
   }, []);
 
-  const addBookmarkHandler = (chData) => {
-    const oldList = parsed("charactersList");
+  const BookmarkHandler = (chData) => {
+    const oldList = chLists;
 
     if (chData.mode === "add") {
       if (
@@ -29,24 +23,26 @@ const Characters = (props) => {
         clear();
         oldList.push(chData.data);
         save("charactersList", oldList);
+        setChLists(oldList);
       }
     } else if (chData.mode === "delete") {
       const newArr = oldList.filter((item) => item.id !== chData.data.id);
       clear();
       save("charactersList", newArr);
+      setChLists(newArr);
     }
   };
 
   return (
     <div className={classes.characters}>
-      {characters &&
-        characters.map((character) => {
+      {chLists &&
+        chLists.map((item) => {
           return (
             <Character
-              data={character}
-              key={character.id}
-              onAddBookmark={addBookmarkHandler}
-              bookmarkmode={false}
+              data={item}
+              key={item.id}
+              onAddBookmark={BookmarkHandler}
+              showBookmarkMode={true}
               searchMode={false}
             />
           );
@@ -55,4 +51,4 @@ const Characters = (props) => {
   );
 };
 
-export default Characters;
+export default ShowBookMark;
